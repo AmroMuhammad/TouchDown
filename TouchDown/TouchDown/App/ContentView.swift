@@ -9,13 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            VStack(spacing: 0) {
+                NavigationBarView()
+                    .padding(.horizontal,15)
+                    .padding(.bottom)
+                    .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+                    .background(.white)
+                    .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 5)
+                
+                
+                ScrollView(.vertical, showsIndicators: false){
+                    VStack(spacing: 0){
+                                                
+                        FeaturedTabView()
+                        .frame(height: UIScreen.main.bounds.width / 1.475) // This will fix the layout rendering priority issue by using the screen's aspect ratio.
+                        .padding(.vertical, 20)
+                        
+                        FooterView()
+                            .padding(.horizontal)
+                    }
+                }
+                
+            }
+            .background(colorBackground.ignoresSafeArea(.all,edges: .all))
         }
-        .padding()
+        .ignoresSafeArea(.all,edges: .top)
+        
     }
 }
 
