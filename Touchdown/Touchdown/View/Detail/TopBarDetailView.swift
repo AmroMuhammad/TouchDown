@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TopBarDetailView: View {
+    @EnvironmentObject var shop:Shop
+
     @State private var isAnimating = false
     
     var body: some View {
@@ -16,7 +18,7 @@ struct TopBarDetailView: View {
                 Text("Price")
                     .fontWeight(.semibold)
                 
-                Text(sampleProduct.formattedPrice)
+                Text(shop.selectedProduct?.formattedPrice ?? "N/A")
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .scaleEffect(1.35,anchor: .leading)
@@ -26,7 +28,7 @@ struct TopBarDetailView: View {
             
             Spacer()
             
-            Image(sampleProduct.image)
+            Image(shop.selectedProduct?.image ?? "info")
                 .resizable()
                 .scaledToFit()
                 .offset(y: isAnimating ? 0  : -35)
@@ -42,7 +44,9 @@ struct TopBarDetailView: View {
 struct TopBarDetailView_Previews: PreviewProvider {
     static var previews: some View {
         TopBarDetailView()
+            .environmentObject(Shop())
             .previewLayout(.sizeThatFits)
             .padding()
+        
     }
 }

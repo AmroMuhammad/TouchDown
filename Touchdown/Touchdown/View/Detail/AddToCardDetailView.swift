@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddToCardDetailView: View {
+    @EnvironmentObject var shop:Shop
     var body: some View {
         Button {} label: {
             Spacer()
@@ -17,7 +18,7 @@ struct AddToCardDetailView: View {
                 .foregroundColor(.white)
             Spacer()
         }.padding(15)
-            .background(sampleProduct.colorRGB)
+            .background(shop.selectedProduct?.colorRGB ?? Color.red)
             .clipShape(Capsule())
     }
 }
@@ -25,6 +26,7 @@ struct AddToCardDetailView: View {
 struct AddToCardDetailView_Previews: PreviewProvider {
     static var previews: some View {
         AddToCardDetailView()
+            .environmentObject(Shop())
             .previewLayout(.sizeThatFits)
             .padding()
     }

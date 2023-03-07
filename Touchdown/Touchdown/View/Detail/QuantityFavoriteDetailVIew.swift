@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QantityFavoriteDetailVIew: View {
+struct QuantityFavoriteDetailVIew: View {
     @State private var counter:Int = 0
     @State private var isFavorite:Bool = false
 
@@ -51,7 +51,7 @@ struct QantityFavoriteDetailVIew: View {
 
 struct QantityFavoriteDetailVIew_Previews: PreviewProvider {
     static var previews: some View {
-        QantityFavoriteDetailVIew()
+        QuantityFavoriteDetailVIew()
             .previewLayout(.sizeThatFits)
             .padding()
     }
